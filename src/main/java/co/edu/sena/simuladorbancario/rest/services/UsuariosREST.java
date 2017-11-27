@@ -12,6 +12,7 @@ import co.edu.sena.simuladorbancario.entities.Usuarios;
 import co.edu.sena.simuladorbancario.sessions.CuentaCorrienteFacade;
 import co.edu.sena.simuladorbancario.sessions.UsuariosFacade;
 import java.util.List;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -19,6 +20,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -32,10 +34,11 @@ public class UsuariosREST {
      @EJB
     private UsuariosFacade usuariosEJB;
      
-     @EJB
-     private CuentaCorrienteFacade cuentaCorrientaEJB;
+    @EJB
+    private CuentaCorrienteFacade cuentaCorrientaEJB;
     
     @GET
+    @RolesAllowed({"ASESOR"})
     public List<Usuarios> findAll(){
         return usuariosEJB.findAll();
     }
@@ -45,7 +48,8 @@ public class UsuariosREST {
     @PathParam("nombre")String nombre){
         return usuariosEJB.find(nombre);
     
-}
+    }
+   
     @POST
     public void create(Usuarios usuarios){
         
@@ -53,14 +57,16 @@ public class UsuariosREST {
         CuentaCorriente newCcorriente = new CuentaCorriente();
         CuentaAhorros newCahorros = new CuentaAhorros();
         Cdt newCdt = new Cdt();
-        
-        //Hallar el saldo total 
+        try {
+            
+             //Hallar el saldo total 
         newUsuarios.setSaldoTotal(newCcorriente.getSaldo() + newCahorros.getSaldo() + newCdt.getSaldo());
+          
+        } catch (Exception e) {
+         
+        }
         
-        
-        
-        
-        
+       
         
     }
     
