@@ -11,6 +11,8 @@ import co.edu.sena.simuladorbancario.entities.CuentaCorriente;
 import co.edu.sena.simuladorbancario.entities.Usuarios;
 import co.edu.sena.simuladorbancario.sessions.CuentaCorrienteFacade;
 import co.edu.sena.simuladorbancario.sessions.UsuariosFacade;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
@@ -22,6 +24,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -49,9 +52,19 @@ public class UsuariosREST {
         return usuariosEJB.find(nombre);
     
     }
-   
+    
     @POST
-    public void create(Usuarios usuarios){
+    public void create(Usuarios usuarios) {
+        usuariosEJB.create(usuarios);
+
+    }
+    
+    
+    @POST
+    @Path("cuenta")
+    public void createCuenta(
+        @QueryParam("saldoTotal") double saldoTotal,
+        @QueryParam("saldo") double saldo){
         
         Usuarios newUsuarios = new Usuarios();
         CuentaCorriente newCcorriente = new CuentaCorriente();

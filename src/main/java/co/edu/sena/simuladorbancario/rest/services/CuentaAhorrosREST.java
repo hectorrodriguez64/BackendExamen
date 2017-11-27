@@ -8,6 +8,8 @@ package co.edu.sena.simuladorbancario.rest.services;
 import co.edu.sena.simuladorbancario.entities.CuentaAhorros;
 import co.edu.sena.simuladorbancario.entities.Usuarios;
 import co.edu.sena.simuladorbancario.sessions.CuentaAhorrosFacade;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
@@ -18,6 +20,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -44,17 +47,22 @@ public class CuentaAhorrosREST {
     @POST
     public void create(
         @QueryParam("saldo") double saldo,
-            @QueryParam("saldoTotal") double saldoTotal){
+        @QueryParam("saldoTotal") double saldoTotal){
         
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        Gson gson = gsonBuilder.create();
         CuentaAhorros newCahorros = new CuentaAhorros();
         Usuarios newUsuarios = new Usuarios();
-    
-        newCahorros.setRetirar(retirarValor(newUsuarios.getSaldoTotal(), saldo));
         
-         newCahorros.setConsignar(consignarValor(newUsuarios.getSaldoTotal(), saldo));
-        
-        
-        
+        try{
+            newCahorros.setRetirar(retirarValor(newUsuarios.getSaldoTotal(), saldo));
+            newCahorros.setConsignar(consignarValor(newUsuarios.getSaldoTotal(), saldo));
+            newCahorros.setSaldo(saldo);
+            newCahorros.setInteresMensual(interesMensual);
+            newCahorros.setIdUsuarios(newUsuarios);
+        }catch (Exception e) {
+      
+        }        
     }
     
     /**
@@ -71,10 +79,10 @@ public class CuentaAhorrosREST {
     public void calcularValores(){
         //Saldo inicial de la cuenta de ahorro
         saldo = 0;
-        interesMensual = darInteresMensual( );
+        interesMensual = interesMensual();
     }
 
-    public double darSaldo(){
+    public double saldo(){
         return saldo;
     }
 
@@ -112,8 +120,7 @@ public class CuentaAhorrosREST {
      * 
      * @return interés mensual de la cuenta de ahorros
      */
-    public double darInteresMensual( )
-    {
+    private double interesMensual(){
         return 0.006;
     }
     
