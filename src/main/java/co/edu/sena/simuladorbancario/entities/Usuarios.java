@@ -60,7 +60,7 @@ public class Usuarios implements Serializable {
     @NotNull
     @Column(name = "numDocumento")
     private int numDocumento;
-    @Basic(optional = false)
+    @Basic(optional = true)
     @NotNull
     @Column(name = "saldoTotal")
     private double saldoTotal;

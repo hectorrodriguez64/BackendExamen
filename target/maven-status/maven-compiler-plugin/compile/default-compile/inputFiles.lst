@@ -1,5 +1,6 @@
 /home/adsi1261718/PruebaJava/SimuladorBancario/Backend/SimuladorBancario/src/main/java/co/edu/sena/simuladorbancario/entities/CuentaCorriente.java
 /home/adsi1261718/PruebaJava/SimuladorBancario/Backend/SimuladorBancario/src/main/java/co/edu/sena/simuladorbancario/rest/services/CuentaCorrienteREST.java
+/home/adsi1261718/PruebaJava/SimuladorBancario/Backend/SimuladorBancario/src/main/java/co/edu/sena/simuladorbancario/rest/services/UsuariosREST.java
 /home/adsi1261718/PruebaJava/SimuladorBancario/Backend/SimuladorBancario/src/main/java/co/edu/sena/simuladorbancario/entities/Roles.java
 /home/adsi1261718/PruebaJava/SimuladorBancario/Backend/SimuladorBancario/src/main/java/co/edu/sena/simuladorbancario/rest/services/CdtREST.java
 /home/adsi1261718/PruebaJava/SimuladorBancario/Backend/SimuladorBancario/src/main/java/co/edu/sena/simuladorbancario/sessions/CuentaAhorrosFacade.java

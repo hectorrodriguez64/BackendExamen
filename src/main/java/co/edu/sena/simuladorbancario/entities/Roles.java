@@ -39,10 +39,10 @@ public class Roles implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
+    @NotNull
+    @Size(max = 45)
     @Column(name = "id")
-    private Integer id;
+    private String id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -57,20 +57,20 @@ public class Roles implements Serializable {
     public Roles() {
     }
 
-    public Roles(Integer id) {
+    public Roles(String id) {
         this.id = id;
     }
 
-    public Roles(Integer id, String nombre) {
+    public Roles(String id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

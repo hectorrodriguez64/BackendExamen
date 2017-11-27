@@ -47,12 +47,12 @@ public class CuentaAhorros implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 45)
+    @Basic(optional = false)
     @Column(name = "consignar")
-    private String consignar;
-    @Size(max = 45)
+    private double consignar;
+    @Basic(optional = false)
     @Column(name = "retirar")
-    private String retirar;
+    private double retirar;
     @Basic(optional = false)
     @NotNull
     @Column(name = "interes_mensual")
@@ -92,19 +92,19 @@ public class CuentaAhorros implements Serializable {
         this.id = id;
     }
 
-    public String getConsignar() {
+    public double getConsignar() {
         return consignar;
     }
 
-    public void setConsignar(String consignar) {
+    public void setConsignar(double consignar) {
         this.consignar = consignar;
     }
 
-    public String getRetirar() {
+    public double getRetirar() {
         return retirar;
     }
 
-    public void setRetirar(String retirar) {
+    public void setRetirar(double retirar) {
         this.retirar = retirar;
     }
 
